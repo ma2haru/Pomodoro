@@ -1,0 +1,153 @@
+body {
+	background-color: #FFF3E0;
+}
+
+.title-area {
+	background-color: #FF9800;
+	margin-bottom: 2%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	padding-right: 2.5%;
+	padding-left: 2.5%;
+}
+
+h1 a:link {
+	color: white;
+	text-decoration: none;
+}
+
+h1 a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+h1 a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+h1 a:active {
+	color: white;
+	text-decoration: none;
+}
+
+.contents-area {
+	margin-right: 2.5%;
+	margin-left: 2.5%;
+}
+
+.content {
+	margin-bottom: 2%;
+	cursor : pointer;
+}
+
+.content a {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height:100%;
+	width: 100%;
+}
+
+.content div {
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+
+.content div.card:hover {
+	-webkit-transform: scale(1.02);
+	-moz-transform: scale(1.02);
+	-o-transform: scale(1.02);
+	transform: scale(1.02);
+}
+
+.card img {
+	width: 100%;
+}
+
+.markdown-area {
+	background-color: #ffffff;
+	margin-right: 2.5%;
+	margin-left: 2.5%;
+	margin-bottom: 2.5%;
+	padding: 2.5%;
+}
+
+pre {
+	background-color: #f5f5f5;
+	padding: 2em 2em;
+	position: relative;
+}
+
+blockquote {
+	background-color: #f5f5f5;
+	padding: 3em 2em;
+	position: relative;
+}
+
+blockquote:before {
+	content: "“";
+	font-size: 600%;
+	line-height: 1em;
+	font-family: "ＭＳ Ｐゴシック",sans-serif;
+	color: #999;
+	position: absolute;
+	left:0;
+	top:0;
+}
+
+blockquote:after {
+	content: "”";
+	font-size: 600%;
+	line-height: 0em;
+	font-family: "ＭＳ Ｐゴシック",sans-serif;
+	color: #999;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.button-area {
+	background-color: #ff9800;
+	margin-right: 2.5%;
+	margin-left: 2.5%;
+	border-radius: 3px;
+	text-align: center;
+	color: white;
+}
+
+.before-button {
+	padding: 0.5em;
+}
+
+.button-area a {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height:100%;
+	width: 100%;
+}
+
+.button-area a:link {
+	color: white;
+	text-decoration: none;
+}
+
+.button-area a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+.button-area a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.button-area a:active {
+	color: white;
+	text-decoration: none;
+}
