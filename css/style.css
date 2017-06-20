@@ -4,11 +4,11 @@ body {
 
 .title-area {
 	background-color: #FF9800;
-	margin-bottom: 2%;
-	padding-top: 2%;
-	padding-bottom: 2%;
-	padding-right: 2.5%;
-	padding-left: 2.5%;
+	margin-bottom: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-right: 30px;
+	padding-left: 30px;
 }
 
 h1 a:link {
@@ -150,4 +150,52 @@ blockquote:after {
 .button-area a:active {
 	color: white;
 	text-decoration: none;
+}
+
+.leftTop{
+	margin-top: 30px;
+	margin-left:40px;
+}
+.square_btn{
+    display: inline-block;
+    padding: 1em 3em;
+    text-decoration: none;
+    font-size:150%;
+    border-radius: 4px;
+    color: #ffffff;
+    background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+    background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #c58668;
+}
+
+.square_btn:active{
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+}
+
+#buttonPosition{
+	position: absolute;
+ 	bottom: 50px;
+ 	right: 80px;
+}
+
+#form{
+	position: absolute;
+	height:330px;
+	width:430px;
+	top:60px;
+	left:40px;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 5px double #333333;
+	border-radius: 10px;
+	background-color:#98fb98;
+}
+
+textarea#todoForm{
+	margin-left: 10px;
 }
