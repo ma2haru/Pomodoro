@@ -1,89 +1,91 @@
-var timer1; //タイマーを格納する変数（タイマーID）の宣言
+	var nowDate;
 
-
-//カウントダウン関数を1000ミリ秒毎に呼び出す関数
-function cntStart()
-{
-  document.timer.elements[2].disabled=true;
-  timer1=setInterval("countDown()",1000);
-}
-
-//タイマー停止関数
-function cntStop()
-{
-  document.timer.elements[2].disabled=false;
-  clearInterval(timer1);
-}
-
-//カウントダウン関数
-function countDown()
-{
-  var min=document.timer.elements[0].value;
-  var sec=document.timer.elements[1].value;
-  
-  if( (min=="") && (sec=="") )
-  {
-    alert("時刻を設定してください！");
-    reSet();
-  }
-  else
-  {
-    if (min=="") min=0;
-    min=parseInt(min);
-    
-    if (sec=="") sec=0;
-    sec=parseInt(sec);
-    
-    tmWrite(min*60+sec-1);
-  }
-}
-
-//残り時間を書き出す関数
-function tmWrite(int)
-{
-  int=parseInt(int);
-  
-  if (int<=0)
-  {
-    reSet();
-    alert("時間です！");
-  }
-  else
-  {
-    //残り分数はintを60で割って切り捨てる
-    document.timer.elements[0].value=Math.floor(int/60);
-    //残り秒数はintを60で割った余り
-    document.timer.elements[1].value=int % 60;
-  }
-}
-
-//フォームを初期状態に戻す（リセット）関数
-function reSet()
-{
-  document.timer.elements[0].value="0";
-  document.timer.elements[1].value="0";
-  document.timer.elements[2].disabled=false;
-  clearInterval(timer1);
-}  
-
-$(document).on("click", "#startButton", function(){
-	$("#startButton").remove();
-	var createStop = createStopButton();
-	$("#buttonPosition").append(createStop);
+	function set2fig(num) {
+		   // 数値が1桁だったら2桁の文字列にして返す
+		   var ret;
+		   if( num < 10 ) { ret = "0" + num; }
+		   else { ret = num; }
+		   return ret;
+	}
+	function isNumOrZero(num) {
+	   // 数値でなかったら0にして返す
+	   if( isNaN(num) ) { return 0; }
+	   return num;
+	}
+	function showCountdown() {
+	   // 現在日時を数値(1970-01-01 00:00:00からのミリ秒)に変換
+	   nowDate = new Date();
+	   var dnumNow = nowDate.getTime();
+	 
+	   // 指定日時を数値(1970-01-01 00:00:00からのミリ秒)に変換
+	   var inputYear  = $("#endYear").val();
+	   var inputMonth = $("#endMonth").val();
+	   var inputDate  = $("#endDate").val();
+	   var inputHour  = $("#endHour").val();
+	   var inputMin   = $("#endMin").val();
+	   var inputSec   = $("#endSec").val();
+	   var targetDate = new Date( isNumOrZero(inputYear), isNumOrZero(inputMonth), isNumOrZero(inputDate), isNumOrZero(inputHour), isNumOrZero(inputMin), isNumOrZero(inputSec) );
+	   var dnumTarget = targetDate.getTime();
+	 
+	   // 表示を準備
+	   var dlMin   = targetDate.getMinutes();
+	   var dlSec   = targetDate.getSeconds();
+	 
+	   // 引き算して日数(ミリ秒)の差を計算
+	   var diff2Dates = dnumTarget - dnumNow;
+	 
+	   // 差のミリ秒を、日数・時間・分・秒に分割
+	   var dDays  = diff2Dates / ( 1000 * 60 * 60 * 24 );   // 日数
+	   diff2Dates = diff2Dates % ( 1000 * 60 * 60 * 24 );
+	   var dHour  = diff2Dates / ( 1000 * 60 * 60 );   // 時間
+	   diff2Dates = diff2Dates % ( 1000 * 60 * 60 );
+	   var dMin   = diff2Dates / ( 1000 * 60 );   // 分
+	   diff2Dates = diff2Dates % ( 1000 * 60 );
+	   var dSec   = diff2Dates / 1000;   // 秒
+	   var msg = Math.floor(dMin) + ":"
+	            + Math.floor(dSec);
+	 
+	   // 作成した文字列を表示
+	   $("#pomodoroTimer").empty();
+	   $("#pomodoroTimer").append(msg);
+	}
+	// 1秒ごとに実行
+	//function CDT(){
+	//	setInterval('showCountdown()',1000);
+	//}
 	
-});
-
-$(document).on("click", "#stopButton", function(){
-	$("#stopButton").remove();
-	var createStart = createStartButton();
-	$("#buttonPosition").append(createStart);
+	$(document).on("click", "#startButton", function(){
+		// TODOを表示させる
+		var todoText = $('input[name="todoForm"]').val();
+		var createText = '<font class="viewTodo">' + todoText + '</font>';
+		$("#todotodo font").remove();
+		$("#todotodo").append(createText);
+		$('input[name="todoForm"]').val("");
+		//スタートボタンを消してストップボタンを作る
+		$("#startButton").remove();
+		var createStop = createStopButton();
+		$("#buttonPosition").append(createStop);
+		nowDate = new Date();
+		$("#endYear").val(nowDate.getFullYear());
+		$("#endMonth").val(nowDate.getMonth() + 1);
+		$("#endDate").val(nowDate.getDate());
+		$("#endHour").val(nowDate.getHours());
+		$("#endMin").val(nowDate.getMinutes() + 30);
+		$("#endSec").val(nowDate.getSeconds());
+		setInterval('showCountdown()',1000);
+	});
 	
-});
-
-function createStopButton(){
-	return '<a href="#" class="square_btn" id="stopButton">STOP</a>'
-}
-
-function createStartButton(){
-	return '<a href="#" class="square_btn" id="startButton">START</a>'
-}
+	$(document).on("click", "#stopButton", function(){
+		$("#stopButton").remove();
+		var createStart = createStartButton();
+		$("#buttonPosition").append(createStart);
+		
+	});
+	
+	function createStopButton(){
+		return '<a href="#" class="square_btn" id="stopButton">STOP</a>'
+	}
+	
+	function createStartButton(){
+		return '<a href="#" class="square_btn" id="startButton">START</a>'
+	}
