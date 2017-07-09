@@ -235,14 +235,14 @@ input[name="pomodoronum"]{
 
 #todoPosition font{
     position:absolute;
-    top:30px;
-	left: 35px;
+    top:20px;
+	left: 30px;
 }
 
 #todoPosition div#todotodo{
     position:absolute;
     padding:4em 8em;
-    top:100px;
+    top:90px;
 	left: 80px;
 }
 
