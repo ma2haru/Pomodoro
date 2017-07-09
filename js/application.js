@@ -67,11 +67,12 @@ $(document).on("click", "#startButton", function(){
 	//フォームの記入をできなくする
 	$('input[name="todoForm"]').attr('disabled', 'disabled');
 	$('input[name="pomodoronum"]').attr('disabled', 'disabled');
-		//スタートボタンを消してストップボタンを作る
-		$("#startButton").remove();
-		var createStop = createStopButton();
-		$("#buttonPosition").append(createStop);
-		time();
+	//スタートボタンを消してストップボタンを作る
+	$("#stopButton").remove();
+	$("#startButton").remove();
+	var createStop = createStopButton();
+	$("#buttonPosition").append(createStop);
+	time();
 });
 
 function time(){
@@ -106,6 +107,7 @@ function reset(){
 	clearInterval(timer);
 	$('input[name="todoForm"]').removeAttr('disabled');
 	$('input[name="pomodoronum"]').removeAttr('disabled');
+	$("#startButton").remove();
 	$("#stopButton").remove();
 	var createStart = createStartButton();
 	$("#buttonPosition").append(createStart);
