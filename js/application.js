@@ -64,15 +64,17 @@ $(document).on("click", "#startButton", function(){
 	$("#todotodo font").remove();
 	$("#todotodo").append(createText);
 	$('input[name="todoForm"]').val("");
-	// ポモドーロの回数
-	pomodoroNum = $('input[name="pomodoronum"]').val();
-	//スタートボタンを消してストップボタンを作る
-	$("#startButton").remove();
-	var createStop = createStopButton();
-	$("#buttonPosition").append(createStop);
 	//フォームの記入をできなくする
 	$('input[name="todoForm"]').attr('disabled', 'disabled');
 	$('input[name="pomodoronum"]').attr('disabled', 'disabled');
+		//スタートボタンを消してストップボタンを作る
+		$("#startButton").remove();
+		var createStop = createStopButton();
+		$("#buttonPosition").append(createStop);
+		time();
+});
+
+function time(){
 	nowDate = new Date();
 	$("#endYear").val(nowDate.getFullYear());
 	$("#endMonth").val(nowDate.getMonth() + 1);
@@ -80,11 +82,6 @@ $(document).on("click", "#startButton", function(){
 	$("#endHour").val(nowDate.getHours());
 	$("#endMin").val(nowDate.getMinutes() + 30);
 	$("#endSec").val(nowDate.getSeconds());
-	//テスト
-//	$("#endMin").val(nowDate.getMinutes());
-//	$("#endSec").val(nowDate.getSeconds()+5);
-	//ここまで
-	// TODO ポモドーロ回数だけループ
 	timer = setInterval('showCountdown()',1000);
 	setTimeout(function(){
 		$('#time').empty();
@@ -97,9 +94,9 @@ $(document).on("click", "#startButton", function(){
 		var sound = new Audio("data:audio/wav;base64," + alarm);
 		sound.play();
 		reset();
-	},5000);
+	},1800000); 
 	
-});
+}
 
 $(document).on("click", "#stopButton", function(){
 	reset();
